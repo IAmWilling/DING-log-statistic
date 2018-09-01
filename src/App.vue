@@ -11,4 +11,7 @@ export default {
 </script>
 
 <style>
+#app{
+  user-select: none;
+}
 </style>
