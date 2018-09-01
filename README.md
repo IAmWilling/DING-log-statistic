@@ -1,7 +1,5 @@
 # ding-log
 
-##一个钉钉中的的小组件,用于查看组织成员的日报,并统计已提交和未交的人数.
-
 > to statistical logs
 
 ## Build Setup

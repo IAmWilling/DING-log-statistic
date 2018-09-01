@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" ref="hel">
     <div class="date">
       <span class="date_time" @click="ddClickChangeDate">{{ date }} <span class="iconfont">&#xe87e;</span> </span>
       <span class="date_direction" @click="ddClickChangeDirection">{{ direction }} <span class="iconfont">&#xe87e;</span></span>
@@ -120,11 +120,21 @@
          
         </div>
       </transition>
-    </div>
+    <!-- 置顶 -->
 
+     <transition name="topD">
+      <div class="goTop" v-show="isGoToTop" ref="topDiv" @click="clickGoToTop">
+        <span class="iconfont4" style="line-height:48px;">&#xe614;</span>
+      </div>
+    </transition>
+
+    </div>
+    
 </template>
 
 <script>
+var scrollTop_x = 0;
+var count = 0;
 import { toDateA, disposeGiveLogData , getUnGiveDetailInfo } from "../jsAPI/index"; //getDate
 import Schart from "vue-schart";
 import Axios from "axios";
@@ -178,6 +188,7 @@ export default {
       isDetailData:false,     //详情块
       detailData:null,      //详情数据块
       cursor:'',  //点击后某人的名字存储
+      isGoToTop:false,    //显示返回顶部按钮
     };
   },
   created() {
@@ -187,8 +198,8 @@ export default {
       if (this.direction === this.$store.state.defaultClass) {
         this.checked = true;
       }
-
     });
+    this._goToTop();
 
     // this.$set(this.statisticalStruct.dataBase[0],'value',50);
   },
@@ -480,6 +491,52 @@ export default {
     },
     closeItemDetail () {
       this.isDetailData = false;
+    },
+    _goToTop () {
+      this.$nextTick(()=>{
+        window.onscroll = ()=>{
+          var x = 0;
+          var t = document.documentElement.scrollTop || document.body.scrollTop; //获取滚动距离
+          if(t>=0 && t < 1500) {
+            this.$refs.topDiv.style.backgroundColor = "#52c41a";
+          }else if(t>=1500 && t < 2500){
+            this.$refs.topDiv.style.backgroundColor = "#3296FA";
+          }else {
+            this.$refs.topDiv.style.backgroundColor = "red";
+          }
+          if(count == 0){
+            scrollTop_x = t;    //记录第一次位置
+            count+=1;
+          }else{
+             if(scrollTop_x > t){
+               this.isGoToTop = true;
+            }else{
+               this.isGoToTop = false;
+            }
+            count = 0;
+          }
+          if(t == 0) {
+            this.isGoToTop = false;
+          }
+          
+          
+          // if(t>500){
+          //   this.isGoToTop = true;
+          // }else{
+          //   this.isGoToTop = false;
+          // }
+        }
+      })
+    },
+    clickGoToTop () {
+      //获取当前
+      var t = document.documentElement.scrollTop || document.body.scrollTop; //获取滚动距离
+      
+      window.scrollBy(0,-200);
+      var f = setTimeout(this.clickGoToTop,1);
+      if(t==0){
+        clearTimeout(f);
+      }
     }
   }
 };
@@ -503,6 +560,7 @@ export default {
 }
 .date_time {
   margin-left: 32px;
+ 
 }
 .date_direction {
   float: right;
@@ -608,11 +666,11 @@ export default {
 }
 @font-face {
   font-family: 'iconfont';  /* project id 818416 */
-  src: url('//at.alicdn.com/t/font_818416_9md6kki6y8.eot');
-  src: url('//at.alicdn.com/t/font_818416_9md6kki6y8.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_818416_9md6kki6y8.woff') format('woff'),
-  url('//at.alicdn.com/t/font_818416_9md6kki6y8.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_818416_9md6kki6y8.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_818416_c7kcqenrwzr.eot');
+  src: url('//at.alicdn.com/t/font_818416_c7kcqenrwzr.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_818416_c7kcqenrwzr.woff') format('woff'),
+  url('//at.alicdn.com/t/font_818416_c7kcqenrwzr.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_818416_c7kcqenrwzr.svg#iconfont') format('svg');
 }
 .iconfont{
     font-family:"iconfont" !important;
@@ -636,6 +694,14 @@ export default {
     -webkit-text-stroke-width: 0.1px;
     -moz-osx-font-smoothing: grayscale;
   color:#9e9e9e;
+}
+.iconfont4{
+    font-family:"iconfont" !important;
+    font-size:23px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0px;
+    -moz-osx-font-smoothing: grayscale;
+  color:#fff;
 }
 .dd-border-bottom {
   border-bottom: 0.1rem solid #e5e5e5;
@@ -692,21 +758,7 @@ export default {
   font-size:14px;
 }
 /*go-away*/
-.go-away-enter, /* .fade-leave-active below version 2.1.8 */ {
- transform: translate3d(0,0,0);
 
-}
-.go-away-enter-active, {
-   transform: translate3d(150px,0,0);
-
-}
-.go-away-leave-active {
-  opacity: 1;
-}
-.go-away-leave-to {
- opacity: 0;
-  transition-duration:0.3s;
-}
 .side-column-enter-active {
     opacity: 1;
 }
@@ -726,5 +778,33 @@ export default {
   -moz-transform: translate3d(0, -80rem, 0); /* Firefox 4 */
   -webkit-transform: translate3d(0, -80rem, 0); /* Safari 和 Chrome */
   -o-transform: translate3d(0, -80rem, 0); /* Opera */
+}
+.goTop{
+    z-index: 100;
+   
+    position: fixed;
+    bottom: 100px;
+    right:20px;
+    width: 50px;
+    height: 50px;
+    border-radius:50%;
+    text-align: center;
+    background-color:#3296FA;
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 10px 20px, rgba(0, 0, 0, 0.07) 0px 20px 40px;
+ 
+    transition-duration: .4s;
+}
+/* topD */
+.topD-enter-active {
+    transform: translateX(0rem);
+}
+.topD-leave-active {
+ transform: scale(1);
+}
+.topD-leave-to {
+ transform: scale(0);
+}
+.topD-enter/* .fade-leave-active below version 2.1.8 */ {
+   transform: translateX(10rem);
 }
 </style>

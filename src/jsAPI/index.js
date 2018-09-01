@@ -28,12 +28,12 @@ export const toDateA = (date)=>{
 //得到未交人的信息结构
 export const getUnGiveDetailInfo = (classd,givel) => {
   var arr = new Array();
-  // classd.forEach(item=>{
+  classd.forEach(item=>{
  
-  //   if(item.name=="李理想"){
-  //     alert(item.userid);
-  //   }
-  // })
+    if(item.name=="王俊刚"){
+      alert(item.userid);
+    }
+  })
   if(givel.length!=0){
    
     classd.forEach((item)=>{
