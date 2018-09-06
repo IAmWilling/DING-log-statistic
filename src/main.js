@@ -3,22 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import fastClick from 'fastclick'
-import './assets/styles/rest.css'
-import './assets/styles/border.css'
-import store from './store/index';
-import Youth from '../static/youth.js';
-Vue.use(Youth);
-import '../static/youth.css';
+
 Vue.config.productionTip = false
 
-fastClick.attach(document.body)
-Vue.prototype._api = '/api/api/';
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  store,
   components: { App },
   template: '<App/>'
 })

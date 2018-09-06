@@ -1,6 +1,6 @@
-# ding-log
+# attendance
 
-> to statistical logs
+> none
 
 ## Build Setup
 
