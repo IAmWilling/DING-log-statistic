@@ -1,4 +1,4 @@
-//王俊刚 李旭阳 张靖迪 王磊 吴耀田 李理想
+//日报白名单
 export const DONG_JIA_HAO = "160308315633235706"; //董佳豪
 export const FU_JING_XI = "3232543292899533";   //付敬溪
 export const WEI_YING = "1925464662857772"; //未颖
@@ -14,10 +14,25 @@ export const WANG_PENG_PENG = "142166011429722283"; //王鹏鹏
 export const WANG_YAN_HUI = "15320717869136778";  //王彦辉
 export const WANG_KANG = "15311987591927357"; //王康
 export const XIN_XING_TAO = "0833561336003714"; //辛兴涛
-export const WANG_JUN_GANG = "";  //王俊刚
+export const WANG_JUN_GANG = "15307916804472894";  //王俊刚
 export const LI_XU_YANG = "190135086126261940"; //李旭阳
 export const ZHANG_JING_DI = "171845193524640116"; //张靖迪
 export const WANG_LEI = "0406073328947871"; //王磊
 export const WU_YAO_TIAN = "175559084221761124";  //吴耀田
 export const LI_LI_XIANG = "154867291026360187";  //李理想
 export const MA_XIANG = "17555402681258216";
+export const LI_TIAN_SHAN = "02245104081039238";   //李天山
+export const LIU_HONG_WU = "032328474120837432";  //刘洪武
+export const CAI_FEI = "2111276260  0            1095645"; //蔡飞
+export const SHI_JIAN_GUO = "211138483630167357"; //石建国
+export const ZHANG_YAN_MIN = "072302381124463452";//张艳敏
+export const HAN_SHUN ="21113059401244593";  //韩顺
+export const ZHAO_JUN = "12393463061143494";//赵军
+export const XUE_SI_NUO = "102949422833667672"; //薛思诺
+export const HOU_KE = "1621090114656083";//侯苛
+export const YUAN_SHI_CHAO = "211128175934238064";//袁世超
+export const ZHANG_LI_BIN = "100865624524047599";  //张立彬
+export const SUI_HAI_JIANG = "160002052123795164";  //崔海江
+export const ZHANG_JIA_JIA = "185029354224053120";//张佳佳
+export const MA_XIAO_LONG = "095316583838761686"; //马小龙
+export const LI_JING_MEI = "186005423526071600";// 李京美
