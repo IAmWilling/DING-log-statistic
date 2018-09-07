@@ -2,7 +2,7 @@
 <div>
   <div class="hello" ref="hel">
     <div class="date">
-      <span class="iconfont" style="font-size:24px;" @click="GOTObb">&#xe60a;返回</span>
+
       <span class="date_time" @click="ddClickChangeDate">{{ date }} <span class="iconfont">&#xe87e;</span> </span>
       <span class="date_direction">{{ this.$store.state.defaultClass }}</span>
     </div>
@@ -323,6 +323,7 @@ export default {
   color: #9e9e9e;
   line-height: 16px;
   margin-left: 32px;
+  margin-top:20px;
 }
 .added_detail {
   width: calc(100% - 32px);
